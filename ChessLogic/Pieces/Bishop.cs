@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChessLogic
+namespace ChessLogic.Pieces
 {
-    public class Pawn : Piece
+    public class Bishop : Piece
     {
-        public override PieceType Type => PieceType.Pawn;
+        public override PieceType Type => PieceType.Bishop;
         public override Player Color { get; }
 
-        public Pawn(Player color)
+        public Bishop(Player color)
         {
             Color = color;
         }
 
         public override Piece Copy()
         {
-            Pawn copy = new Pawn(this.Color);
+            Bishop copy = new Bishop(Color);
             copy.HasMoved = HasMoved;
             return copy;
         }
