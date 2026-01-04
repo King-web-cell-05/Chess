@@ -9,10 +9,11 @@ namespace ChessLogic
         public Board Board { get; }
         public Player CurrentPlayer { get; private set; }
 
-        public GameState(Player, player, Board board)
+        public GameState(Player player, Board board)
         {
             CurrentPlayer = player;
             Board = board;
         }
     }
 }
+ 
