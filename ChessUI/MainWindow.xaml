@@ -18,7 +18,8 @@
             </Grid.Background>
 
             <!-- This Grid will hold pieces -->
-            <Grid x:Name="PieceGrid">
+            <Grid x:Name="PieceGrid"
+                  RenderOptions.BitmapScalingMode="HighQuality">
                 <!-- Define 8 rows -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
