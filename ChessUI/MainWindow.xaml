@@ -11,18 +11,39 @@
         Background="#101010">
     <Viewbox>
         <Grid x:Name="BoardGrid"
-              Width="600"
-              Height="600" 
-              >
+          Width="600"
+          Height="600">
             <Grid.Background>
                 <ImageBrush ImageSource="Assets/Board.png"/>
             </Grid.Background>
-            <UniformGrid  x:Name="PieceGrid"
-                          Rows="8"
-                          Columns="8">
-                <Image Source="Assets/KingB.png" />
 
-            </UniformGrid>
+            <!-- This Grid will hold pieces -->
+            <Grid x:Name="PieceGrid">
+                <!-- Define 8 rows -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Define 8 columns -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
         </Grid>
     </Viewbox>
+
 </Window>

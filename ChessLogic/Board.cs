@@ -27,7 +27,7 @@ namespace ChessLogic
             board.AddStartPieces();
             return board;
         }
-        
+
         private void AddStartPieces()
         {
             this[0, 0] = new Rook(Player.Black);
@@ -39,22 +39,22 @@ namespace ChessLogic
             this[0, 6] = new Knight(Player.Black);
             this[0, 7] = new Rook(Player.Black);
 
-            this[7, 0] = new Rook(Player.Black);
-            this[7, 1] = new Knight(Player.Black);
-            this[7, 2] = new Bishop(Player.Black);
-            this[7, 3] = new Queen(Player.Black);
-            this[7, 4] = new King(Player.Black);
-            this[7, 5] = new Bishop(Player.Black);
-            this[7, 6] = new Knight(Player.Black);
-            this[7, 7] = new Rook(Player.Black);
+            this[7, 0] = new Rook(Player.White);
+            this[7, 1] = new Knight(Player.White);
+            this[7, 2] = new Bishop(Player.White);
+            this[7, 3] = new Queen(Player.White);
+            this[7, 4] = new King(Player.White);
+            this[7, 5] = new Bishop(Player.White);
+            this[7, 6] = new Knight(Player.White);
+            this[7, 7] = new Rook(Player.White);
 
             for (int c = 0; c < 8; c++)
             {
                 this[1, c] = new Pawn(Player.Black);
                 this[6, c] = new Pawn(Player.White);
             }
-
         }
+
 
         public static bool IsInside(Position pos)
         {
