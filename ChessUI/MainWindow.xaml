@@ -18,45 +18,18 @@
                 <ImageBrush ImageSource="Assets/Board.png"/>
             </Grid.Background>
 
-           <UniformGrid x:Name="HighlightGrid"
+            <UniformGrid x:Name="HighlightGrid"
              Rows="8"
              Columns="8"
              IsHitTestVisible="False"/>
 
-<UniformGrid x:Name="PieceGrid"
+            <UniformGrid x:Name="PieceGrid"
              Rows="8"
-             Columns="8"/>
+             Columns="8"
+             RenderOptions.BitmapScalingMode="HighQuality"/>
 
 
-            <!-- This Grid will hold pieces -->
-            <Grid x:Name="Grid"
-                  RenderOptions.BitmapScalingMode="HighQuality"
-                  MouseDown="BoardGrid_MouseDown">
-                <!-- Define 8 rows -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
-                <!-- Define 8 columns -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-            </Grid>
         </Grid>
     </Viewbox>
-
 </Window>

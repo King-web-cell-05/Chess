@@ -6,9 +6,6 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-
-
 using ChessLogic;       
 
 namespace ChessUI
@@ -80,7 +77,7 @@ namespace ChessUI
 
         private Position ToSquarePosition(Point point)
         {
-            double squareSize = BoardGrid.ActualWidth / 8;
+            double squareSize = BoardGrid.ActualWidth/8;
             int row = (int)(point.Y / squareSize);
             int col = (int)(point.X / squareSize);
             return new Position(row, col);
@@ -114,6 +111,8 @@ namespace ChessUI
             gameState.MakeMove(move);
             DrawBoard(gameState.Board);
         }
+
+
 
 
         private void CacheMoves(IEnumerable<Move> moves)
