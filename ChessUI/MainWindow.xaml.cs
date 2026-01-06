@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using ChessLogic;
@@ -35,11 +36,8 @@ namespace ChessUI
                     pieceImages[r, c] = image;
                     PieceGrid.Children.Add(image);
 
-                    Rectangle highlight = new Rectangle
-                    {
-                        Fill = Brushes.Transparent,
-                        IsHitTestVisible = false
-                    };
+                    Rectangle highlight = new Rectangle();
+                  
 
                     highlights[r, c] = highlight;
                     HighlightGrid.Children.Add(highlight);
@@ -58,6 +56,59 @@ namespace ChessUI
                 }
             }
         }
+
+        private void BoardGrid_MousedDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(BoardGrid);
+            Position pos = ToSquarePosition(point);
+
+            if (selectedPos == null)
+            {
+                OnFromPositionSelected(pos);
+            }
+            else
+            {
+                OnToPositionSelected(pos);
+            }
+        }
+
+        private Position ToSquarePosition(Point point)
+        {
+            double squareSize = BoardGrid.ActualWidth / 8;
+            int row = (int)(point.Y / squareSize);
+            int col = (int)(point.X / squareSize);
+            return new Position(row, col);
+        }
+
+        private void OnFromPositionSelected(Position pos)
+        {
+            IEnumerable<Move> moves = gameState.LegalMovesForPiece(pos);
+
+            if (moves.Any())
+            {
+                selectedPos = pos;
+                CacheMoves(moves);
+                ShowHighlights(); 
+            }
+        }
+
+        private void OnToPositionSelected(Position pos)
+        {
+            selectedPos = null;
+            HideHighlights();
+
+            if (moveCache.TryGetValue(pos, out Move move))
+            {
+                HandleMove(move);
+            }
+        }
+
+        private void HandleMove(Move move)
+        {
+            gameState.MakeMove(move);
+            DrawBoard(gameState.Board);
+        }
+
 
         private void CacheMoves(IEnumerable<Move> moves)
         {
