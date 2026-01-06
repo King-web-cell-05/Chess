@@ -3,8 +3,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ChessLogic;
+
+
+
+using ChessLogic;       
 
 namespace ChessUI
 {
@@ -15,7 +20,7 @@ namespace ChessUI
         private readonly Dictionary<Position, Move> moveCache = new Dictionary<Position, Move>();
 
         private GameState gameState;
-        private Position? selectedPos = null;
+        private Position selectedPos = null;
 
         public MainWindow()
         {
@@ -57,7 +62,8 @@ namespace ChessUI
             }
         }
 
-        private void BoardGrid_MousedDown(object sender, MouseButtonEventArgs e)
+        private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
+
         {
             Point point = e.GetPosition(BoardGrid);
             Position pos = ToSquarePosition(point);
@@ -136,5 +142,6 @@ namespace ChessUI
                 highlights[to.Row, to.Column].Fill = Brushes.Transparent;
             }
         }
+
     }
 }
