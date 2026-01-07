@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace ChessLogic
 {
@@ -9,21 +9,23 @@ namespace ChessLogic
         public abstract PieceType Type { get; }
         public abstract Player Color { get; }
         public bool HasMoved { get; set; } = false;
-        public abstract Piece Copy();
 
+        public abstract Piece Copy();
         public abstract IEnumerable<Move> GetMoves(Position from, Board board);
 
-        public IEnumerable<Position>MovePositionsInDir(Position from, Board board, Direction dir)
-        { 
-            for(Position pos = from + dir; Board.IsInside(pos); pos += dir)
+        protected IEnumerable<Position> MovePositionsInDir(Position from, Board board, Direction dir)
+        {
+            for (Position pos = from + dir; Board.IsInside(pos); pos += dir)
             {
                 if (board.IsEmpty(pos))
                 {
                     yield return pos;
+                    continue;
                 }
+
                 Piece piece = board[pos];
 
-                if (piece.Color != this.Color)
+                if (piece.Color != Color)
                 {
                     yield return pos;
                 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessLogic
+﻿namespace ChessLogic
 {
     public class Queen : Piece
     {
