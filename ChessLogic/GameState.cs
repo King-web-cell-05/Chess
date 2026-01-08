@@ -9,6 +9,7 @@ namespace ChessLogic
         public Board Board { get; }
         public Player CurrentPlayer { get; private set; }
 
+        public Result Result { get; private set; } = null;
         public GameState(Player player, Board board)
         {
             CurrentPlayer = player;
@@ -32,6 +33,18 @@ namespace ChessLogic
             move.Execute(Board);
             CurrentPlayer = CurrentPlayer.Opponent();
         }
+
+        public IEnumerable<Move> AllLegalMovesFor(Player player)
+        {
+            return Board.PiecePositions(player)
+                .SelectMany(pos =>
+                {
+                    Piece piece = Board[pos];
+                   return piece.GetMoves(pos, Board)
+                });
+
+                 return moveCandidates.Where(move => move.IsLegal(Board));
+
+        }
     }
 }
- 
