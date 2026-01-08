@@ -14,7 +14,10 @@ namespace ChessLogic
 
         public virtual bool IsLegal(Board board)
         {
-            return true;
+            Player player = board[FromPos].Color;
+            Board boardCopy = board.Copy();
+            Execute(boardCopy);
+            return !boardCopy.IsInCheck(player);
         }
 
     }
