@@ -26,7 +26,7 @@ namespace ChessUI
 
             gameState = new GameState(Player.White, Board.Initial());
             DrawBoard(gameState.Board);
-            SetCursor(gameState.CurrentPlayer);
+
         }
 
         private void InitializeBoard()
@@ -40,7 +40,7 @@ namespace ChessUI
                     PieceGrid.Children.Add(image);
 
                     Rectangle highlight = new Rectangle();
-                  
+
 
                     highlights[r, c] = highlight;
                     HighlightGrid.Children.Add(highlight);
@@ -78,7 +78,7 @@ namespace ChessUI
 
         private Position ToSquarePosition(Point point)
         {
-            double squareSize = BoardGrid.ActualWidth/8;
+            double squareSize = BoardGrid.ActualWidth / 8;
             int row = (int)(point.Y / squareSize);
             int col = (int)(point.X / squareSize);
             return new Position(row, col);
@@ -92,7 +92,7 @@ namespace ChessUI
             {
                 selectedPos = pos;
                 CacheMoves(moves);
-                ShowHighlights(); 
+                ShowHighlights();
             }
         }
 
@@ -111,7 +111,7 @@ namespace ChessUI
         {
             gameState.MakeMove(move);
             DrawBoard(gameState.Board);
-            SetCursor(gameState.CurrentPlayer);
+
         }
 
 
@@ -144,17 +144,9 @@ namespace ChessUI
             }
         }
 
-        private void SetCursor(Player player)
-        {
-            if (player == Player.White)
-            {
-                Cursor = ChessCursors.WhiteCursor;
-            }
-            else
-            {
-                Cursor = ChessCursors.BlackCursor;
-            }
-        }
+
+
+     
 
     }
 }
