@@ -12,5 +12,10 @@ namespace ChessLogic
         
         public abstract void Execute(Board board);
 
+        public virtual bool IsLegal(Board board)
+        {
+            return true;
+        }
+
     }
 }

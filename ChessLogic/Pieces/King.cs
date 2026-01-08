@@ -58,5 +58,14 @@ namespace ChessLogic
                 yield return new NormalMove(from, to);
             }
         }
+
+        public override bool CanCaptureOppponentKing(Position from, Board board)
+        {
+            return MovePositions(from, board).Any(to =>
+            {
+                Piece piece = board[to];
+                return piece != null && piece.Type == PieceType.King;
+            });
+        }
     }
 }
