@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessLogic;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,23 +19,42 @@ namespace ChessUI
     /// </summary>
     public partial class GameOverMenu : UserControl
     {
+        public event Action<Option> OptionSelected;
         public GameOverMenu()
         {
             InitializeComponent();
         }
 
-        private void Restart_Click(object sender, RoutedEventArgs e)
+        private static string GetWinnerText(Player winner)
         {
+            return winner switch
+            {
+                Player.White => "WHITE WINS!",
+                Player.Black => "BLACK WINS!",
+                _ => "IT'S A DRAW!"
 
+
+            };
         }
 
-        private void Exitt_Click(object sender, RoutedEventArgs e)
+        private static string PlayerString(Player player)
         {
+            return player switch
+            {
+                Player.White => "WHITE WINS!",
+                Player.Black => "BLACK WINS!",
+                _ => ""
+            };
+        }
 
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+            OptionSelected?.Invoke(Option.Restart);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            OptionSelected?.Invoke(Option.Exit);
 
         }
     }
