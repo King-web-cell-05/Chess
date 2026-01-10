@@ -22,5 +22,20 @@ namespace ChessUI
         {
             InitializeComponent();
         }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exitt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
