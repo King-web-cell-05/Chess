@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using ChessLogic.Pieces;
+﻿using ChessLogic.Pieces;
 
-
-
-namespace ChessLogic.Moves
+namespace ChessLogic
 {
     public class PawnPromotion : Move
     {
@@ -32,6 +25,16 @@ namespace ChessLogic.Moves
                 PieceType.Rook => new Rook(color),
                 _ => new Queen(color)
             };
+        }
+
+        public override void Execute(Board board)
+        {
+            Piece pawn = board[FromPos];
+            board[FromPos] = null;
+
+            Piece promotionPiece = CreatePromotionPiece(pawn.Color);
+            promotionPiece.HasMoved = true;
+            board[ToPos] = promotionPiece;
         }
 
     }
