@@ -17,7 +17,7 @@ namespace ChessUI
             InitializeComponent();
 
             Result result = gameState.Result;
-            winnerText.Text = GetWinnerText(result.Winner);
+            winnerText.Text = GetWinnerText(result.Winner);   
             ReasonText.Text = GetReasonText(result.Reason, gameState.CurrentPlayer);
         }
 
