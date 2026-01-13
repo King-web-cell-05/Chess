@@ -28,7 +28,7 @@
              Columns="8"
              RenderOptions.BitmapScalingMode="HighQuality"/>
 
-
+            <ContentControl x:Name="MenuContainer"/>
 
         </Grid>
     </Viewbox>

@@ -11,13 +11,14 @@ namespace ChessLogic
 
         private static readonly Direction[] dirs = new Direction[]
         {
-            Direction.North,
-            Direction.South,
-            Direction.West,
-            Direction.East,
-            Direction.NorthEast,
-            Direction.SouthEast,
-            Direction.SouthWest,
+        Direction.North,
+        Direction.South,
+        Direction.West,
+        Direction.East,
+        Direction.NorthEast,
+        Direction.NorthWest,
+        Direction.SouthEast,
+        Direction.SouthWest,
         };
 
         public King(Player color)
@@ -39,33 +40,23 @@ namespace ChessLogic
                 Position to = from + dir;
 
                 if (!Board.IsInside(to))
-                {
                     continue;
 
-                }
-
                 if (board.IsEmpty(to) || board[to].Color != Color)
-                {
                     yield return to;
-                }
             }
         }
 
         public override IEnumerable<Move> GetMoves(Position from, Board board)
         {
-            foreach(Position to in MovePositions(from, board))
-            {
+            foreach (Position to in MovePositions(from, board))
                 yield return new NormalMove(from, to);
-            }
         }
 
-        public override bool CanCaptureOppponentKing(Position from, Board board)
+        public override bool CanCaptureOpponentKing(Position from, Board board)
         {
-            return MovePositions(from, board).Any(to =>
-            {
-                Piece piece = board[to];
-                return piece != null && piece.Type == PieceType.King;
-            });
+            return false; 
         }
     }
+
 }
