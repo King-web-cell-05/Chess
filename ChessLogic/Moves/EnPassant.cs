@@ -18,7 +18,7 @@
         public override void Execute(Board board)
         {
             new NormalMove(FromPos, ToPos).Execute(board);
-            board[capturePos]
+            board[capturePos] = null;
         }
     }
 }
