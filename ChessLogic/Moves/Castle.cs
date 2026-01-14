@@ -48,6 +48,32 @@ namespace ChessLogic.Moves
 
         }
 
+        public override bool IsLegal(Board board)
+        {
+            Player player = board[FromPos].Color;
+
+            if (board.IsInCheck(player))
+            {
+                return false;
+            }
+
+            Board copy = board.Copy();
+            Position kingPosInCopy = FromPos;
+
+            for (int i= 0; i < 2; i++)
+            {
+                new NormalMove(kingPosInCopy, kingPosInCopy + kingMoveDir).Execute(copy);
+                kingPosInCopy += kingMoveDir;
+
+                if (copy.IsInCheck(player))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
 
 
 
