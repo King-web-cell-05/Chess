@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessLogic
+﻿namespace ChessLogic
 {
     public class Counting
     {
@@ -19,6 +15,32 @@ namespace ChessLogic
                 blackCount[type] = 0;
             }
         }
+
+        public void Increment(Player color, PieceType type)
+        {
+            if (color == Player.White)
+            {
+                whiteCount[type]++;
+            }
+            else if (color == Player.Black)
+            {
+                blackCount[type]++;
+            }
+
+            TotalCount++;
+        }
+
+        public int White(PieceType type)
+        {
+            return whiteCount[type];
+        }
+
+        public int Black(PieceType type)
+        {
+            return blackCount[type];
+        }
+
+
 
     }
 }
