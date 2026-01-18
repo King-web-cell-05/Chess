@@ -182,5 +182,42 @@ namespace ChessLogic
         {
             return PiecePositions(color).First(pos => this[pos].Type == type);
         }
+
+        private bool IsUnmovedKingAndRook(Position kingPos, Position rookPos)
+        {
+            if (IsEmpty(kingPos) || IsEmpty(rookPos))
+            {
+                return false;
+            }
+
+            Piece king = this[kingPos];
+            Piece rook = this[kingPos];
+
+            return king.Type == PieceType.King && rook.Type == PieceType.Rook &&
+                    !king.HasMoved && !rook.HasMoved;
+
+        }
+
+        public bool CastleRightKS(Player player)
+        {
+            return player switch
+            {
+                Player.White => IsUnmovedKingAndRook(new Position(7, 4), new Position(7, 7)),
+                Player.Black => IsUnmovedKingAndRook(new Position(0, 4), new Position(0, 7)),
+                _ => false
+
+            };
+        }
+         
+        public bool CastleRightQS (Player player)
+        {
+            return player switch
+            {
+                Player.White => IsUnmovedKingAndRook(new Position(7, 4), new Position(7, 7)),
+                Player.Black => IsUnmovedKingAndRook(new Position(0, 4), new Position(0, 7)),
+                _ => false
+
+            };
+        }
     }
 }
