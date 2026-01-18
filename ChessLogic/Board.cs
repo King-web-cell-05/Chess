@@ -219,5 +219,45 @@ namespace ChessLogic
 
             };
         }
+
+        private bool HasPawnInPosition(Player player, Position[] pawnPositions, Position skipPos)
+        {
+            foreach (Position pos in pawnPositions.Where(IsInside))
+            {
+                Piece piece = this[pos];
+                if (piece == null || piece.Color != player || piece.Type != PieceType.Pawn)
+                {
+                    continue;
+                }
+
+                EnPassant move = new EnPassant(pos, skipPos);
+                if (move.IsLegal(this))
+                {
+                    return true; 
+                }
+            }
+
+            return false;
+        }
+
+        public bool canCaptureEnPassant(Player player)
+        {
+            Position skipPos = GetPawnSkipPosition(player.Opponent());
+
+            if (skipPos == null)
+            {
+                return false;
+            }
+
+            Position[] pawnPositions = player switch
+            {
+                Player.White => new Position[] { skipPos + Direction.SouthWest, skipPos + Direction.SouthEast },
+                Player.Black => new Position[] { skipPos + Direction.NorthWest, skipPos + Direction.NorthEast },
+                _ => Array.Empty<Position>()
+
+            };
+
+            return HasPawnInPosition(player, pawnPositions, skipPos);
+        }
     }
 }
