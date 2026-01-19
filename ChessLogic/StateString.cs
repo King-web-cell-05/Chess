@@ -18,7 +18,7 @@ namespace ChessLogic
             sb.Append(' ');
             AddCurrentPlayer(currentPlayer);
             sb.Append(' ');
-            //Add castling rights
+            AddCastlingRights(board);
             sb.Append(" ");
             //Add en passant data
 
@@ -95,6 +95,40 @@ namespace ChessLogic
             else
             {
                 sb.Append('b');
+            }
+        }
+
+        private void AddCastlingRights(Board board)
+        {
+            bool castleWKS = board.CastleRightKS(Player.White);
+            bool castleWQS = board.CastleRightQS(Player.White);
+            bool castleBKS = board.CastleRightKS(Player.Black);
+            bool castleBQS = board.CastleRightQS(Player.Black);
+
+            if (!(castleWKS || castleWQS || castleBKS || castleBQS))
+            {
+                sb.Append('-');
+                return;
+            }
+
+            if (castleWKS)
+            {
+                sb.Append('K');
+            }
+
+            if (castleWQS)
+            {
+                sb.Append('Q');
+            }
+
+            if (castleBKS)
+            {
+                sb.Append('K');
+            }
+
+            if (castleBQS)
+            {
+                sb.Append('Q');
             }
         }
 
