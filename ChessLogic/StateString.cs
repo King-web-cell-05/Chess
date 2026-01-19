@@ -20,7 +20,7 @@ namespace ChessLogic
             sb.Append(' ');
             AddCastlingRights(board);
             sb.Append(" ");
-            //Add en passant data
+            AddEnPassant(board, currentPlayer);
 
 
         }
@@ -130,6 +130,22 @@ namespace ChessLogic
             {
                 sb.Append('Q');
             }
+        }
+
+        private void AddEnPassant(Board board, Player currentPlayer)
+        {
+            if (!board.canCaptureEnPassant(currentPlayer))
+            {
+                sb.Append('-');
+                return;
+            }
+
+            Position pos = board.GetPawnSkipPosition(currentPlayer.Opponent());
+            char file = (char)('a' + pos.Column);
+            int rank = 8 - pos.Row;
+            sb.Append(file);
+            sb.Append(rank);
+
         }
 
     }
