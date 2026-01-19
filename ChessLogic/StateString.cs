@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 
 
@@ -23,6 +19,11 @@ namespace ChessLogic
             AddEnPassant(board, currentPlayer);
 
 
+        }
+
+        public override string ToString()
+        {
+            return sb.ToString();
         }
 
         private static char PieceChar(Piece piece)
